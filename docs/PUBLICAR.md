@@ -25,7 +25,7 @@ Recomendación: empieza por **A**. Si más adelante quieres difusión pública, 
 
 ### 2. El ID de la extensión
 
-El manifiesto ya trae el ID `aftv-short-url@willljp93.github.io` (`browser_specific_settings.gecko.id`). Es único en AMO y **no debe cambiar nunca**: Mozilla vincula todas las versiones a ese ID.
+El manifiesto ya trae el ID `aftv-short-url@XxXxX.github.io` (`browser_specific_settings.gecko.id`). Es único en AMO y **no debe cambiar nunca**: Mozilla vincula todas las versiones a ese ID.
 
 ### 3. Claves de API
 
