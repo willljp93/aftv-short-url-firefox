@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>AFTV Short URL</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="theme.js"></script>
+</head>
+<body>
+  <form id="f" autocomplete="off">
+    <div class="head">
+      <label for="code">Código o Short URL de AFTVnews (Downloader)</label>
+      <button id="theme" class="icon" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="field">
+      <span>aftv.news/</span>
+      <input id="code" inputmode="numeric" maxlength="60" placeholder="12345" spellcheck="false" autofocus>
+      <button id="clear" class="clear" type="button" aria-label="Borrar código" title="Borrar" hidden>
+        <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="row">
+      <button id="go" type="submit">Abrir</button>
+      <button id="peek" type="button" class="ghost">Ver destino</button>
+    </div>
+    <label class="opt"><input type="checkbox" id="direct"> Abrir directo al destino, sin pasar por el acortador</label>
+    <p id="msg" role="status" aria-live="polite"></p>
+  </form>
+  <script src="shared.js"></script>
+  <script src="extract.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

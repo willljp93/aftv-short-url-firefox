@@ -1,0 +1,30 @@
+{
+  "name": "aftv-short-url-firefox",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Extensión de Firefox para abrir códigos y Short URLs de go.aftvnews.com (Downloader de Fire TV / Android TV).",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "web-ext run --source-dir src",
+    "lint": "web-ext lint --source-dir src",
+    "test": "node --test tests/extract.test.js tests/popup.test.js",
+    "build": "web-ext build --source-dir src --artifacts-dir dist --filename aftv-short-url-{version}.zip --overwrite-dest",
+    "sign": "web-ext sign --source-dir src --artifacts-dir dist-signed --channel unlisted"
+  },
+  "devDependencies": {
+    "jsdom": "^31.0.1",
+    "web-ext": "^10.8.0"
+  },
+  "author": "William Jiménez",
+  "homepage": "https://github.com/willljp93/aftv-short-url-firefox#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willljp93/aftv-short-url-firefox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/willljp93/aftv-short-url-firefox/issues"
+  }
+}

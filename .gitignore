@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-signed/
+web-ext-artifacts/
+*.xpi
+.env
+.DS_Store

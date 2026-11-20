@@ -1,0 +1,52 @@
+{
+  "manifest_version": 2,
+  "name": "AFTV Short URL",
+  "version": "1.2.0",
+  "description": "Abre códigos y Short URLs de go.aftvnews.com (aftv.news/12345) desde un cuadro rápido.",
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  },
+  "browser_action": {
+    "default_icon": "icon.svg",
+    "default_title": "AFTV Short URL",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "shared.js",
+      "extract.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "omnibox": {
+    "keyword": "aftv"
+  },
+  "permissions": [
+    "storage",
+    "*://aftv.news/*",
+    "*://go.aftvnews.com/*"
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "Abrir AFTV Short URL"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "aftv-short-url@willljp93.github.io",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "author": "William Jiménez",
+  "homepage_url": "https://github.com/willljp93/aftv-short-url-firefox"
+}

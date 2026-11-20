@@ -1,0 +1,54 @@
+name: Release
+
+# Se ejecuta al subir una etiqueta como v1.2.0 y publica el zip en GitHub Releases.
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      # Opcionales: si existen, además del zip se genera un .xpi firmado (canal "unlisted").
+      AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+      AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Comprobar que la etiqueta coincide con la versión
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          MANIFEST_VERSION="$(node -p "require('./src/manifest.json').version")"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          echo "etiqueta=$TAG_VERSION manifest=$MANIFEST_VERSION package=$PACKAGE_VERSION"
+          if [ "$TAG_VERSION" != "$MANIFEST_VERSION" ] || [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "::error::La etiqueta, src/manifest.json y package.json deben tener la misma versión."
+            exit 1
+          fi
+
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+      - name: Firmar con addons.mozilla.org (opcional)
+        if: env.AMO_JWT_ISSUER != '' && env.AMO_JWT_SECRET != ''
+        continue-on-error: true # si falla la firma, el zip se publica igualmente
+        run: npx web-ext sign --source-dir src --artifacts-dir dist-signed --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
+
+      - name: Publicar release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: |
+            dist/*.zip
+            dist-signed/*.xpi
+          generate_release_notes: true
