@@ -1,6 +1,6 @@
 # Subir el proyecto a GitHub desde Windows
 
-Usuario de GitHub: **willljp93**. Repositorio sugerido: **aftv-short-url-firefox**.
+Usuario de GitHub: **XxXxX**. Repositorio sugerido: **aftv-short-url-firefox**.
 
 ## 1. Instalar Git y Node.js (una sola vez)
 
@@ -39,7 +39,7 @@ cd "$HOME\Documents\aftv-short-url-firefox"
 ## 4. Configurar tu identidad en Git (una sola vez)
 
 ```powershell
-git config --global user.name "William Jiménez"
+git config --global user.name "xXxXxXx"
 git config --global user.email "TU_CORREO"
 ```
 
@@ -51,7 +51,7 @@ Usa el correo de tu cuenta de GitHub o el correo privado `...@users.noreply.gith
 git init -b main
 git add .
 git commit -m "Versión 1.2.0"
-git remote add origin https://github.com/willljp93/aftv-short-url-firefox.git
+git remote add origin https://github.com/XxXxX/aftv-short-url-firefox.git
 git push -u origin main
 ```
 
